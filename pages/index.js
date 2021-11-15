@@ -23,15 +23,24 @@ export default function Home() {
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
         </p> */}
-        <HorizontalSlider text={"Mascapito"} speed={0.1} />
-        <HorizontalSlider text={"Mascapito"} speed={0.2} />
-        <HorizontalSlider text={"Mascapito"} speed={0.3} />
-        <HorizontalSlider text={"Mascapito"} speed={0.4} />
-        <HorizontalSlider text={"Mascapito"} speed={0.5} />
-        <HorizontalSlider text={"Mascapito"} speed={0.6} />
-        <HorizontalSlider text={"Mascapito"} speed={0.7} />
-        <HorizontalSlider text={"Mascapito"} speed={0.8} />
-        <HorizontalSlider text={"Mascapito"} speed={0.9} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.1} direction={'right'} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.1} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.2} direction={'right'} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.2} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.3} direction={'right'} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.3} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.4} direction={'right'} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.4} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.5} direction={'right'} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.5} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.6} direction={'right'} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.6} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.7} direction={'right'} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.7} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.8} direction={'right'} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.8} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.9} direction={'right'} />
+        <HorizontalSlider text={"HOLA CAPO"} speed={0.9} />
 
       </main>
 

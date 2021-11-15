@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 
-export default function HorizontalSlider({text, speed}) {
+export default function HorizontalSlider({text, speed, direction}) {
+    const [ sliderDirection, setSliderDirection ] = useState(direction == 'right' ? 'right' : 'left')
     const [ slideWidth, setSlideWidth ] = useState(0)
     const [ slidesContainerXPosition, setSlidesContainerXPosition ] = useState(0)
     const [ initialWindowScrollPosition, setInitialWindowScrollPosition ] = useState(0)
@@ -33,7 +34,6 @@ export default function HorizontalSlider({text, speed}) {
                 <style jsx>
                     {`
                         .slider-wrapper {
-                            border: 5px solid black;
                             width: 100%;
                             overflow: hidden;
                         }
@@ -41,8 +41,8 @@ export default function HorizontalSlider({text, speed}) {
                         .slides-container {
                             width: fit-content;
                             position: relative;
-                            float: left;
-                            left: calc(${slidesContainerXPosition}vw - ${slideWidth}px);
+                            float: ${sliderDirection};
+                            ${sliderDirection}: calc(${slidesContainerXPosition}vw - ${slideWidth}px);
                         }
                         
                         .slide {
