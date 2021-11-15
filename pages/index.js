@@ -3,9 +3,11 @@ import Image from 'next/image'
 import HorizontalSlider from '../components/HorizontalSlider'
 import styles from '../styles/Home.module.css'
 
+
 export default function Home() {
+
   return (
-    <div className={styles.container}>
+    <div className={`container ${styles.container}`}>
       <Head>
         <title>Horizontal Slider Demo</title>
         <meta name="description" content="A demo of a cool horizontal slider" />
@@ -13,16 +15,23 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        {/* <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <HorizontalSlider />
+        </p> */}
+        <HorizontalSlider text={"Mascapito"} speed={0.1} />
+        <HorizontalSlider text={"Mascapito"} speed={0.2} />
+        <HorizontalSlider text={"Mascapito"} speed={0.3} />
+        <HorizontalSlider text={"Mascapito"} speed={0.4} />
+        <HorizontalSlider text={"Mascapito"} speed={0.5} />
+        <HorizontalSlider text={"Mascapito"} speed={0.6} />
+        <HorizontalSlider text={"Mascapito"} speed={0.7} />
+        <HorizontalSlider text={"Mascapito"} speed={0.8} />
+        <HorizontalSlider text={"Mascapito"} speed={0.9} />
 
       </main>
 
