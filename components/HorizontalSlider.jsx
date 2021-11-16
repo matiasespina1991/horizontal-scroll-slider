@@ -9,12 +9,20 @@ export default function HorizontalSlider({text, speed, direction, slideWidthOnCh
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
-            setSlidesContainerXPosition(window.pageYOffset * speed)
-                
+            if(direction == 'right'){
+                setSlidesContainerXPosition(-window.pageYOffset * speed)
+            } else{
+                setSlidesContainerXPosition(window.pageYOffset * speed)
+            }
             }
         );
 
-        setSlideWidth(slidesContainer.current.offsetWidth)
+        if(direction == 'right'){
+            setSlideWidth(-slidesContainer.current.offsetWidth)
+        } else{
+            setSlideWidth(slidesContainer.current.offsetWidth)
+        }
+        
         
     }, [text])
 
@@ -42,7 +50,7 @@ export default function HorizontalSlider({text, speed, direction, slideWidthOnCh
                             width: fit-content;
                             position: relative;
                             float: ${sliderDirection};
-                            ${sliderDirection}: calc(${slidesContainerXPosition}vw - ${slideWidth}px);
+                            transform: translateX(calc(${slidesContainerXPosition}vw - ${slideWidth}px))
                         }
                         
                         .slide {
@@ -57,3 +65,27 @@ export default function HorizontalSlider({text, speed, direction, slideWidthOnCh
 
 
 }
+
+
+
+{/* <style jsx>
+{`
+    .slider-wrapper {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .slides-container {
+        width: fit-content;
+        position: relative;
+        float: ${sliderDirection};
+        ${sliderDirection}: calc(${slidesContainerXPosition}vw - ${slideWidth}px);
+        transform: translateX(calc(${slidesContainerXPosition}vw - ${slideWidth}px))
+    }
+    
+    .slide {
+        width: fit-content;
+        font-size: 5rem;
+    }
+`}
+</style> */}
