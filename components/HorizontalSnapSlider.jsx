@@ -14,12 +14,12 @@ export default function HorizontalSnapSlider({text}) {
 
     useEffect(() => { 
         window.addEventListener('scroll', () => {
-                const sliderTopToViewport = sliderWrapper.current.getBoundingClientRect().top
-                const viewportTopToDocument = window.pageYOffset
+                const distanceFromSliderToTopOfTheViewport = sliderWrapper.current.getBoundingClientRect().top
+                const distanceFromViewportToTopOfTheDocument = window.pageYOffset
             
                 console.log("The distance from the top of the slider to the top of the document is: ",distanceFromSliderToTopOfTheDocument)
-                console.log("The distance from the top of the slider to the top of the viewport is: ", sliderTopToViewport)
-                console.log("The distance from the top of the viewport to the top of the document is: ", viewportTopToDocument)
+                console.log("The distance from the top of the slider to the top of the viewport is: ", distanceFromSliderToTopOfTheViewport)
+                console.log("The distance from the top of the viewport to the top of the document is: ", distanceFromViewportToTopOfTheDocument)
 
             }
         );
