@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 
-export default function HorizontalSlider({text, speed, direction}) {
+export default function HorizontalSlider({text, speed, direction, slideWidthOnChange}) {
     const [ sliderDirection, setSliderDirection ] = useState(direction == 'right' ? 'right' : 'left')
     const [ slideWidth, setSlideWidth ] = useState(0)
     const [ slidesContainerXPosition, setSlidesContainerXPosition ] = useState(0)
@@ -16,10 +16,10 @@ export default function HorizontalSlider({text, speed, direction}) {
 
         setSlideWidth(slidesContainer.current.offsetWidth)
         
-    }, [])
+    }, [text])
 
     const slidesContainer = useRef()
-    console.log(slideWidth)
+
     
     return(
         <>
