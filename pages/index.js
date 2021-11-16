@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import HorizontalSlider from '../components/HorizontalSlider'
 import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 import Input from '../components/Input'
-
+import HorizontalSnapSlider from '../components/HorizontalSnapSlider'
 
 export default function Home() {
 
@@ -43,8 +42,7 @@ export default function Home() {
         <HorizontalSlider text={userUserInputText} speed={0.7} />
         <HorizontalSlider text={userUserInputText} speed={0.8} direction={'right'} />
         <HorizontalSlider text={userUserInputText} speed={0.8} />
-        {/* <HorizontalSlider text={userUserInputText} speed={0.9} direction={'right'} />
-        <HorizontalSlider text={userUserInputText} speed={0.9} /> */}
+        <HorizontalSnapSlider text={userUserInputText} />
 
       </main>
     </div>
