@@ -55,7 +55,7 @@ export default function HorizontalSlider({text, speed, direction, slideWidthOnCh
                         
                         .slide {
                             width: fit-content;
-                            font-size: 5rem;
+                            font-size: 3.5rem;
                         }
                     `}
                 </style>
