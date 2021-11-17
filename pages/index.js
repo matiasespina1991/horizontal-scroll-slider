@@ -42,7 +42,7 @@ export default function Home() {
         <HorizontalSlider text={userUserInputText} speed={0.7} />
         <HorizontalSlider text={userUserInputText} speed={0.8} direction={'right'} />
         <HorizontalSlider text={userUserInputText} speed={0.8} />
-        <HorizontalSnapSlider text={userUserInputText} />
+        {/* <HorizontalSnapSlider text={userUserInputText} /> */}
 
       </main>
     </div>
