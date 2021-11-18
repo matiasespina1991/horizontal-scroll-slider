@@ -7,7 +7,7 @@ import HorizontalSnapSlider from '../components/HorizontalSnapSlider'
 
 export default function Home() {
 
-  const [ userUserInputText, setUserInputText ] = useState('')
+  const [ userUserInputText, setUserInputText ] = useState('⬆️ Write some text in the input ⬆️')
   const [ slideWidthOnChange, setSlideWidthOnChange ] = useState(0) 
  const handleInputText = (value) => {
     setUserInputText(value)
@@ -42,7 +42,9 @@ export default function Home() {
         <HorizontalSlider text={userUserInputText} speed={0.7} />
         <HorizontalSlider text={userUserInputText} speed={0.8} direction={'right'} />
         <HorizontalSlider text={userUserInputText} speed={0.8} />
-        {/* <HorizontalSnapSlider text={userUserInputText} /> */}
+        <HorizontalSnapSlider text={userUserInputText} direction="right" />
+        <HorizontalSnapSlider text={userUserInputText} />
+        <div className="blank-space"></div>
 
       </main>
     </div>

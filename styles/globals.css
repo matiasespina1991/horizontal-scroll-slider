@@ -15,6 +15,10 @@ a {
   box-sizing: border-box;
 }
 
+.blank-space {
+  height: 50rem;
+}
+
 .input-box {
   transition: 0.2s;
   filter: opacity(0.2);

@@ -1,53 +1,49 @@
 import { useRef, useEffect, useState } from "react"
 
-export default function HorizontalSnapSlider({text}) {
-
-    const [ distanceFromSliderToTopOfTheDocument, setDistanceFromSliderToTopOfTheDocument ] = useState(null)
-    const [ distanceFromSliderToBottomOfTheViewport, setDistanceFromSliderToBottomOfTheViewport ] = useState(null)
-    const [ distanceFromViewportToTopOfTheDocument, setDistanceFromViewportToTopOfTheDocument ] = useState(null)
-    const [ distanceFromSliderToTopOfTheViewport, setDistanceFromSliderToTopOfTheViewport ] = useState(null)
+export default function HorizontalSnapSlider({text, direction}) {
     const [ sliderScroll, setSliderScroll ] = useState(0)
     const [ sliderContainerWidth, setSliderContainerWidth ] = useState(null)
+    const [ sliderReachedViewport, setSliderReachedViewport ] = useState(false)
+    const [ sliderReachedBottom, setSliderReachedBottom ] = useState(false)
+    const [ isNegative, setIsNegative ] = useState('')
 
     const sliderWrapper = useRef();
     const sliderContainer = useRef();
     
 
     useEffect(() => { 
-        setDistanceFromSliderToTopOfTheDocument(sliderWrapper.current.offsetTop)
         setSliderContainerWidth(sliderContainer.current.getBoundingClientRect().width)
     }, [text])
 
     useEffect(() => { 
+
         window.addEventListener('scroll', () => {
-                setDistanceFromSliderToTopOfTheViewport(sliderWrapper.current.getBoundingClientRect().top)
-                setDistanceFromViewportToTopOfTheDocument(window.pageYOffset)
-                setDistanceFromSliderToBottomOfTheViewport(sliderWrapper.current.getBoundingClientRect().bottom - window.innerHeight)
-
-                if(distanceFromSliderToTopOfTheViewport<0 && distanceFromSliderToTopOfTheViewport>-2000){
-                    setSliderScroll(Math.abs(distanceFromSliderToTopOfTheViewport))
-                }
-                
-
-                // console.log("The width of the slider container is: ",sliderContainerWidth)
-                // console.log("The distance from the top of the slider to the top of the document is: ",distanceFromSliderToTopOfTheDocument)
-                // console.log("The distance from the top of the slider to the top of the viewport is: ", distanceFromSliderToTopOfTheViewport)
-                // console.log("The distance from the top of the slider to the bottom of the viewport is: ", distanceFromSliderToBottomOfTheViewport)
-                // console.log("The distance from the top of the viewport to the top of the document is: ", distanceFromViewportToTopOfTheDocument)
-
+            if(sliderWrapper.current.getBoundingClientRect().top < 0) {
+                setSliderScroll(Math.abs(sliderWrapper.current.getBoundingClientRect().top))
+                setSliderReachedViewport(true)
+            } else {
+                setSliderReachedViewport(false)
             }
-        );
-    })
+            if((sliderWrapper.current.getBoundingClientRect().bottom - window.innerHeight) < 0) {
+                setSliderReachedBottom(true)
+            } else {
+                setSliderReachedBottom(false)
+            }
+        })
 
-    
+        if(direction == "right"){
+            setIsNegative('')
+        } else {
+            setIsNegative('-')
+        }
+    }, []);
 
     return (
         <>
             <div ref={sliderWrapper} className="slider-wrapper">
-                <div ref={sliderContainer} className="slides-container">
+                <div ref={sliderContainer} className={`slides-container ${sliderReachedViewport ? "fixed" : ""} ${sliderReachedBottom ? "stickToBottom" : ""}`}>
                     <div className="slide">
-                        {/* {text}  */}
-                        DEMO TEXT
+                        {text} 
                     </div>
                 </div>
             </div>
@@ -55,26 +51,40 @@ export default function HorizontalSnapSlider({text}) {
                 {`
                     .slider-wrapper {
                         background: gray;
+                        position: relative;
                         min-height: 100vh;
                         height: ${sliderContainerWidth}px;
-                        border: 2px solid black;
                         width: 100%;
                         overflow: hidden;
                     }
 
                     .slides-container {
-                        border: 2px solid gray;
-                        transform: translateX(-${sliderScroll}px);
-                        height: fit-content;
+                        transform: translateX(${isNegative}${sliderScroll}px);
+                        height: 100vh;
                         width: fit-content;
                         position: relative;
+                        display: flex;
+                        align-items: center;
+                        ${direction == "right" ? "float:right;" : ""}
                     }
                     
                     .slide {
-                        border: 2px solid yellow;
                         min-width: max-content;
                         width: fit-content;
                         font-size: 30rem;
+                    }
+
+                    .fixed {
+                        position: fixed;
+                        top:0;
+                        bottom: unset;
+                        ${direction == "right" ? "right:0;" : ""}
+                    }
+
+                    .stickToBottom {
+                        position: absolute;
+                        bottom: 0;
+                        top: unset;
                     }
                 `}
             </style>

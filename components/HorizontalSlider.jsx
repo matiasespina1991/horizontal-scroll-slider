@@ -65,27 +65,3 @@ export default function HorizontalSlider({text, speed, direction, slideWidthOnCh
 
 
 }
-
-
-
-{/* <style jsx>
-{`
-    .slider-wrapper {
-        width: 100%;
-        overflow: hidden;
-    }
-
-    .slides-container {
-        width: fit-content;
-        position: relative;
-        float: ${sliderDirection};
-        ${sliderDirection}: calc(${slidesContainerXPosition}vw - ${slideWidth}px);
-        transform: translateX(calc(${slidesContainerXPosition}vw - ${slideWidth}px))
-    }
-    
-    .slide {
-        width: fit-content;
-        font-size: 5rem;
-    }
-`}
-</style> */}
