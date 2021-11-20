@@ -13,7 +13,7 @@ export default function HorizontalSnapSlider({text, direction}) {
     const sliderContainer = useRef();
 
     useEffect(() => {
-        setWindowHeight(window.innerHeight)
+        setWindowHeight(window.innerHeight / 2)
     }, [])
     
     useEffect(() => { 
@@ -54,6 +54,11 @@ export default function HorizontalSnapSlider({text, direction}) {
             setSliderScroll(distanceFromTopOfWrapperToTopOfViewport)
         }
     }, [sliderReachedViewport, distanceFromTopOfWrapperToTopOfViewport, sliderContainerWidth])
+
+    useEffect(() => { 
+        console.log(sliderContainerWidth)
+        console.log(sliderScroll + windowHeight)
+    }, [sliderContainerWidth,sliderScroll, windowHeight])
 
 
     return (
