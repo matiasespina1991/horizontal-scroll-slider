@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 
-export default function HorizontalSlider({text, speed, direction, slideWidthOnChange}) {
+export default function HorizontalSlider({text, speed, direction}) {
     const [ sliderDirection, setSliderDirection ] = useState(direction == 'right' ? 'right' : 'left')
     const [ slideWidth, setSlideWidth ] = useState(0)
     const [ slidesContainerXPosition, setSlidesContainerXPosition ] = useState(0)
-    const [ initialWindowScrollPosition, setInitialWindowScrollPosition ] = useState(0)
-    const [ bodyVerticalScroll, setBodyVerticalScroll ] = useState('')
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -24,7 +22,7 @@ export default function HorizontalSlider({text, speed, direction, slideWidthOnCh
         }
         
         
-    }, [text])
+    }, [text, direction, speed])
 
     const slidesContainer = useRef()
 
@@ -54,7 +52,7 @@ export default function HorizontalSlider({text, speed, direction, slideWidthOnCh
                         }
                         
                         .slide {
-                            width: fit-content;
+                            width: max-content;
                             font-size: 3.5rem;
                         }
                     `}
