@@ -1,42 +1,60 @@
 import { useRef, useEffect, useState } from "react"
 
 export default function HorizontalSnapSlider({text, direction}) {
+    const [distanceFromTopOfWrapperToTopOfViewport, setDistanceFromTopOfWrapperToTopOfViewport] = useState(0)
     const [ sliderScroll, setSliderScroll ] = useState(0)
     const [ sliderContainerWidth, setSliderContainerWidth ] = useState(null)
     const [ sliderReachedViewport, setSliderReachedViewport ] = useState(false)
     const [ sliderReachedBottom, setSliderReachedBottom ] = useState(false)
     const [ isNegative, setIsNegative ] = useState('')
+    const [ windowHeight, setWindowHeight ] = useState(0)
 
     const sliderWrapper = useRef();
     const sliderContainer = useRef();
+
+    useEffect(() => {
+        setWindowHeight(window.innerHeight)
+    }, [])
     
+    useEffect(() => { 
+        if(direction == "right"){
+            setIsNegative('')
+        } else {
+            setIsNegative('-')
+        }
+    }, [direction])
 
     useEffect(() => { 
         setSliderContainerWidth(sliderContainer.current.getBoundingClientRect().width)
     }, [text])
 
     useEffect(() => { 
-
         window.addEventListener('scroll', () => {
-            if(sliderWrapper.current.getBoundingClientRect().top < 0) {
-                setSliderScroll(Math.abs(sliderWrapper.current.getBoundingClientRect().top))
-                setSliderReachedViewport(true)
-            } else {
-                setSliderReachedViewport(false)
+
+            setDistanceFromTopOfWrapperToTopOfViewport(Math.abs(sliderWrapper.current.getBoundingClientRect().top))
+            const wrapperReachedViewport = sliderWrapper.current.getBoundingClientRect().top < 0;
+            const sliderReachedBottom = (sliderWrapper.current.getBoundingClientRect().bottom - window.innerHeight) < 0;
+
+            if(wrapperReachedViewport) {
+                    setSliderReachedViewport(true)
+                } else {
+                    setSliderReachedViewport(false)
             }
-            if((sliderWrapper.current.getBoundingClientRect().bottom - window.innerHeight) < 0) {
-                setSliderReachedBottom(true)
-            } else {
-                setSliderReachedBottom(false)
+
+            if(sliderReachedBottom) {
+                    setSliderReachedBottom(true)
+                } else {
+                    setSliderReachedBottom(false)
             }
         })
-
-        if(direction == "right"){
-            setIsNegative('')
-        } else {
-            setIsNegative('-')
-        }
     }, []);
+
+    useEffect(() => { 
+        if(sliderReachedViewport && distanceFromTopOfWrapperToTopOfViewport < (sliderContainerWidth - window.innerWidth)){
+            setSliderScroll(distanceFromTopOfWrapperToTopOfViewport)
+        }
+    }, [sliderReachedViewport, distanceFromTopOfWrapperToTopOfViewport, sliderContainerWidth])
+
 
     return (
         <>
@@ -53,7 +71,7 @@ export default function HorizontalSnapSlider({text, direction}) {
                         background: gray;
                         position: relative;
                         min-height: 100vh;
-                        height: ${sliderContainerWidth}px;
+                        height: ${sliderContainerWidth - windowHeight}px;
                         width: 100%;
                         overflow: hidden;
                     }
