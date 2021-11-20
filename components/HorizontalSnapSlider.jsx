@@ -88,7 +88,7 @@ export default function HorizontalSnapSlider({text, direction}) {
                     
                     .slide {
                         min-width: max-content;
-                        width: fit-content;
+                        width: max-content;
                         font-size: 30rem;
                     }
 
