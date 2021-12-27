@@ -83,6 +83,7 @@ export default function HorizontalSnapSlider({text, direction}) {
 
                     .slides-container {
                         transform: translateX(${isNegative}${sliderScroll}px);
+                        will-change: transform;
                         height: 100vh;
                         width: fit-content;
                         position: relative;

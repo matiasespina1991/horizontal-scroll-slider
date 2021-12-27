@@ -48,7 +48,8 @@ export default function HorizontalSlider({text, speed, direction}) {
                             width: fit-content;
                             position: relative;
                             float: ${sliderDirection};
-                            transform: translateX(calc(${slidesContainerXPosition}vw - ${slideWidth}px))
+                            transform: translateX(calc(${slidesContainerXPosition}vw - ${slideWidth}px));
+                            will-change: transform;
                         }
                         
                         .slide {
